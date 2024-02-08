@@ -2,7 +2,6 @@ package com.product.controller;
 
 import com.product.dto.fakestoreapi.ProductResponseDto;
 import com.product.service.ProductService;
-import com.product.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
