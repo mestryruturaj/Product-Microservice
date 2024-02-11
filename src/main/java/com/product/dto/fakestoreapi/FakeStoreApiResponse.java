@@ -3,7 +3,7 @@ package com.product.dto.fakestoreapi;
 import lombok.Data;
 
 @Data
-public class ProductResponseDto {
+public class FakeStoreApiResponse {
     private Long id;
     private String title;
     private Double price;
