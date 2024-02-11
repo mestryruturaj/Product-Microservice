@@ -1,23 +1,22 @@
 package com.product.service;
 
-import com.product.dto.fakestoreapi.ProductResponseDto;
+import com.product.dto.fakestoreapi.FakeStoreApiResponse;
+import com.product.external.clients.FakeStoreApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.List;
 
-import static utils.ArrayUtils.convertArrayToList;
+import static com.product.utils.ArrayUtils.convertArrayToList;
 
 @Service(value = "productService")
 public class ProductServiceImpl implements ProductService {
-    private RestTemplate restTemplate;
+    private FakeStoreApiClient fakeStoreApiClient;
 
     @Autowired
-    public ProductServiceImpl(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    public ProductServiceImpl(FakeStoreApiClient fakeStoreApiClient) {
+        this.fakeStoreApiClient = fakeStoreApiClient;
     }
 
     /**
@@ -27,11 +26,8 @@ public class ProductServiceImpl implements ProductService {
      * @return FakeStoreApiProductResponseDto
      */
     @Override
-    public ProductResponseDto getProduct(Integer id) {
-        String url = "https://fakestoreapi.com/products/{productId}";
-        ResponseEntity<ProductResponseDto> productResponseDtoResponseEntity =
-                restTemplate.getForEntity(url, ProductResponseDto.class, id);
-        return productResponseDtoResponseEntity.getBody();
+    public FakeStoreApiResponse getProduct(Integer id) {
+        return null;
     }
 
     /**
@@ -40,12 +36,16 @@ public class ProductServiceImpl implements ProductService {
      * @return List of FakeStoreApiProductResponseDto
      */
     @Override
-    public List<ProductResponseDto> getAllProducts() {
-        String url = "https://fakestoreapi.com/products";
-        ResponseEntity<ProductResponseDto[]> productResponseDtoArrayResponseEntity =
-                this.restTemplate.getForEntity(url, ProductResponseDto[].class);
-        return convertArrayToList(productResponseDtoArrayResponseEntity.getBody());
+    public List<FakeStoreApiResponse> getAllProducts() {
+        List<FakeStoreApiResponse> fakeStoreApiResponseList = this.fakeStoreApiClient.getAllProducts();
+
+
+
+        return null;
     }
 
-
+    /*
+    * TODO:
+    *  change method implementatio using client class
+    * */
 }
