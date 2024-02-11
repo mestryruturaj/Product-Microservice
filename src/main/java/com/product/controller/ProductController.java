@@ -1,6 +1,6 @@
 package com.product.controller;
 
-import com.product.dto.fakestoreapi.ProductResponseDto;
+import com.product.dto.fakestoreapi.FakeStoreApiResponse;
 import com.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,15 +23,15 @@ public class ProductController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ProductResponseDto> getProduct(@PathVariable Integer id) {
-        ProductResponseDto productResponseDto = this.productService.getProduct(id);
-        return new ResponseEntity<>(productResponseDto, HttpStatus.OK);
+    public ResponseEntity<FakeStoreApiResponse> getProduct(@PathVariable Integer id) {
+        FakeStoreApiResponse fakeStoreApiResponse = this.productService.getProduct(id);
+        return new ResponseEntity<>(fakeStoreApiResponse, HttpStatus.OK);
     }
 
     @GetMapping(value = "")
-    public ResponseEntity<List<ProductResponseDto>> getAllProducts() {
-        List<ProductResponseDto> productResponseDtoList = this.productService.getAllProducts();
-        return new ResponseEntity<>(productResponseDtoList, HttpStatus.OK);
+    public ResponseEntity<List<FakeStoreApiResponse>> getAllProducts() {
+        List<FakeStoreApiResponse> fakeStoreApiResponseList = this.productService.getAllProducts();
+        return new ResponseEntity<>(fakeStoreApiResponseList, HttpStatus.OK);
     }
 }
 
