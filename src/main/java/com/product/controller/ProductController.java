@@ -26,6 +26,12 @@ public class ProductController {
         this.productService = productService;
     }
 
+    /**
+     * Method provides an interface to handle the endpoint
+     *
+     * @param id : Integer
+     * @return ResponseEntity of ProductResponseDto
+     */
     @GetMapping(value = "/{id}")
     public ResponseEntity<ProductResponseDto> getProduct(@PathVariable Integer id) {
         Product product = this.productService.getProduct(id);
@@ -40,12 +46,22 @@ public class ProductController {
 
     }
 
+    /**
+     * Method provides an interface to handle the endpoint
+     *
+     * @return ResponseEntity of List of ProductResponseDto
+     */
     @GetMapping(value = "")
     public ResponseEntity<List<ProductResponseDto>> getAllProducts() {
         List<Product> productList = this.productService.getAllProducts();
         List<ProductResponseDto> productResponseDtoList = new ArrayList<>();
         productList
-                .forEach(el -> productResponseDtoList.add(InstanceMapper.mapProductToProductResponseDto(el)));
+                .forEach(el -> {
+                    ProductResponseDto productResponseDto = InstanceMapper.mapProductToProductResponseDto(el);
+                    productResponseDto.setStatus(HttpStatus.OK);
+                    productResponseDto.setMessage(String.format("Product was successfully fetched."));
+                    productResponseDtoList.add(productResponseDto);
+                });
         return new ResponseEntity<>(productResponseDtoList, HttpStatus.OK);
     }
 }

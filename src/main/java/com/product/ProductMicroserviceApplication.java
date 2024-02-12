@@ -14,7 +14,6 @@ public class ProductMicroserviceApplication {
 /*
 * TODO
 *  1) Add controller, service layers
-*  2) Implement resttemplate config
-*  3) Create dto classes to interact with fakestoreapi.com
-*  4) Do the exception handling for api calls
+*  2) Implement custom httpclient
+*  3) Put, patch, delete should be implemented
 * */
