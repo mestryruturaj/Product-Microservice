@@ -1,6 +1,7 @@
 package com.product.service;
 
-import com.product.dto.fakestoreapi.FakeStoreApiResponse;
+import com.product.exception.ProductServiceException;
+import com.product.models.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,12 +14,12 @@ public interface ProductService {
      * @param id : Integer
      * @return FakeStoreApiProductResponseDto
      */
-    public FakeStoreApiResponse getProduct(Integer id);
+    public Product getProduct(Integer id) throws ProductServiceException;
 
     /**
      * Method is used to fetch all the products available on fakestoreapi
      *
      * @return List of FakeStoreApiProductResponseDto
      */
-    public List<FakeStoreApiResponse> getAllProducts();
+    public List<Product> getAllProducts();
 }

@@ -1,14 +1,15 @@
 package com.product.service;
 
 import com.product.dto.fakestoreapi.FakeStoreApiResponse;
+import com.product.exception.ProductServiceException;
 import com.product.external.clients.FakeStoreApiClient;
+import com.product.mapper.InstanceMapper;
+import com.product.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import static com.product.utils.ArrayUtils.convertArrayToList;
 
 @Service(value = "productService")
 public class ProductServiceImpl implements ProductService {
@@ -20,32 +21,33 @@ public class ProductServiceImpl implements ProductService {
     }
 
     /**
-     * Method is used to fetch the Model from fakestoreapi.com having product.id = id
+     * Method provides an interface to get a product from fakestoreapi.com using id
      *
      * @param id : Integer
-     * @return FakeStoreApiProductResponseDto
+     * @return Product
      */
     @Override
-    public FakeStoreApiResponse getProduct(Integer id) {
-        return null;
+    public Product getProduct(Integer id) {
+        try {
+            FakeStoreApiResponse fakeStoreApiResponse = this.fakeStoreApiClient.getProduct(id);
+            Product product = InstanceMapper.mapFakeStoreApiResponseToProduct(fakeStoreApiResponse);
+            return product;
+        } catch (ProductServiceException exception) {
+            return null;
+        }
     }
 
     /**
-     * Method is used to fetch all the products available on fakestoreapi
+     * Method provides an interface to get a list of products from fakestoreapi.com
      *
-     * @return List of FakeStoreApiProductResponseDto
+     * @return List of products
      */
     @Override
-    public List<FakeStoreApiResponse> getAllProducts() {
+    public List<Product> getAllProducts() {
         List<FakeStoreApiResponse> fakeStoreApiResponseList = this.fakeStoreApiClient.getAllProducts();
-
-
-
-        return null;
+        List<Product> productList = new ArrayList<>();
+        fakeStoreApiResponseList.stream()
+                .forEach(el -> productList.add(InstanceMapper.mapFakeStoreApiResponseToProduct(el)));
+        return productList;
     }
-
-    /*
-    * TODO:
-    *  change method implementatio using client class
-    * */
 }
