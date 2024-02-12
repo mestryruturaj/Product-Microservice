@@ -1,6 +1,7 @@
 package com.product.mapper;
 
 import com.product.dto.controller.ProductRequestDto;
+import com.product.dto.controller.ProductResponseDto;
 import com.product.dto.fakestoreapi.FakeStoreApiRequest;
 import com.product.dto.fakestoreapi.FakeStoreApiResponse;
 import com.product.models.Product;
@@ -56,10 +57,16 @@ public class InstanceMapper {
         return product;
     }
 
-
-    /*
-     * TODO:
-     *  1. Product to ProductResponse
+    /**
+     * Method provides an interface for mapping Product to ProductResponseDto
+     *
+     * @param product : Product
+     * @return ProductResponseDto
      */
+    public static ProductResponseDto mapProductToProductResponseDto(Product product) {
+        ProductResponseDto productResponseDto = new ProductResponseDto();
+        productResponseDto.setProduct(product);
+        return productResponseDto;
+    }
 
 }
