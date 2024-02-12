@@ -14,7 +14,7 @@ public interface ProductService {
      * @param id : Integer
      * @return FakeStoreApiProductResponseDto
      */
-    public Product getProduct(Integer id) throws ProductServiceException;
+    public Product getProduct(Integer id);
 
     /**
      * Method is used to fetch all the products available on fakestoreapi
