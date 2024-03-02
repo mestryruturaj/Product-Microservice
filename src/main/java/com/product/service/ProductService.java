@@ -1,6 +1,5 @@
 package com.product.service;
 
-import com.product.exception.ProductServiceException;
 import com.product.models.Product;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +21,21 @@ public interface ProductService {
      * @return List of FakeStoreApiProductResponseDto
      */
     public List<Product> getAllProducts();
+
+    /**
+     * Method provides an interface to create a new object
+     *
+     * @param product : Product
+     * @return Product
+     */
+    public Product createProduct(Product product);
+
+    /**
+     * Method provides an interface to update or modify the existing product
+     *
+     * @param id      Integer
+     * @param product Product
+     * @return Product
+     */
+    public Product putProduct(Integer id, Product product);
 }

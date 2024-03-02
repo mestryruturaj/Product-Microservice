@@ -1,7 +1,7 @@
 package com.product.mapper;
 
-import com.product.dto.controller.ProductRequestDto;
-import com.product.dto.controller.ProductResponseDto;
+import com.product.dto.controllerapi.ProductRequestDto;
+import com.product.dto.controllerapi.ProductResponseDto;
 import com.product.dto.fakestoreapi.FakeStoreApiRequest;
 import com.product.dto.fakestoreapi.FakeStoreApiResponse;
 import com.product.models.Product;
@@ -48,6 +48,7 @@ public class InstanceMapper {
      */
     public static Product mapFakeStoreApiResponseToProduct(FakeStoreApiResponse fakeStoreApiResponse) {
         Product product = new Product();
+        product.setId(fakeStoreApiResponse.getId());
         product.setProductName(fakeStoreApiResponse.getTitle());
         product.setCategory(fakeStoreApiResponse.getCategory());
         product.setDescription(fakeStoreApiResponse.getDescription());

@@ -1,4 +1,4 @@
-package com.product.dto.controller;
+package com.product.dto.controllerapi;
 
 import com.product.dto.fakestoreapi.Rating;
 import lombok.Data;
