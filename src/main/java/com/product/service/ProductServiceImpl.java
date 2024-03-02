@@ -6,6 +6,7 @@ import com.product.exception.ProductServiceException;
 import com.product.external.clients.FakeStoreApiClient;
 import com.product.mapper.InstanceMapper;
 import com.product.models.Product;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -88,6 +89,11 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public Product putProduct(Integer id, Product product) {
+        Product getProductResponse = this.getProduct(id);
+        if (ObjectUtils.isEmpty(getProductResponse)) {
+            return null;
+        }
+
         FakeStoreApiRequest fakeStoreApiRequest = InstanceMapper.mapProductToFakeStoreApiRequst(product);
         try {
             FakeStoreApiResponse fakeStoreApiResponse = fakeStoreApiClient.putProduct(id, fakeStoreApiRequest);

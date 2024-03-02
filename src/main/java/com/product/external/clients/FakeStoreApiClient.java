@@ -79,7 +79,7 @@ public class FakeStoreApiClient {
     public FakeStoreApiResponse putProduct(Integer id, FakeStoreApiRequest fakeStoreApiRequest) throws ProductServiceException {
         try {
             ResponseEntity<FakeStoreApiResponse> fakeStoreApiResponseResponseEntity =
-                    restTemplate.exchange(FAKE_STORE_API_PUT_PRODUCT, HttpMethod.POST, new HttpEntity<>(fakeStoreApiRequest), FakeStoreApiResponse.class, id);
+                    restTemplate.exchange(FAKE_STORE_API_PUT_PRODUCT, HttpMethod.PUT, new HttpEntity<>(fakeStoreApiRequest), FakeStoreApiResponse.class, id);
             return fakeStoreApiResponseResponseEntity.getBody();
         } catch (RuntimeException exception) {
             throw new ProductServiceException("Something went wrong while updating product with id " + id + ".");

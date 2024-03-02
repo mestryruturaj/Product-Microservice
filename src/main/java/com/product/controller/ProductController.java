@@ -99,6 +99,8 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             ProductResponseDto productResponseDto = InstanceMapper.mapProductToProductResponseDto(responseProduct);
+            productResponseDto.setStatus(HttpStatus.OK);
+            productResponseDto.setMessage("Update successful.");
             return new ResponseEntity<>(productResponseDto, HttpStatus.OK);
         }
     }
