@@ -85,4 +85,15 @@ public class FakeStoreApiClient {
             throw new ProductServiceException("Something went wrong while updating product with id " + id + ".");
         }
     }
+
+    public FakeStoreApiResponse deleteProduct(Integer id) throws ProductServiceException {
+        try {
+            ResponseEntity<FakeStoreApiResponse> fakeStoreApiResponseResponseEntity =
+                    restTemplate.exchange(FAKE_STORE_API_DELETE_PRODUCT, HttpMethod.DELETE, null, FakeStoreApiResponse.class, id);
+            return fakeStoreApiResponseResponseEntity.getBody();
+        }
+        catch(RuntimeException exception) {
+            throw new ProductServiceException("Something went wrong while deleting product with id " + id + ".");
+        }
+    }
 }

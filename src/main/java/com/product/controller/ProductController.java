@@ -104,6 +104,19 @@ public class ProductController {
             return new ResponseEntity<>(productResponseDto, HttpStatus.OK);
         }
     }
+
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<ProductResponseDto> deleteProduct(@PathVariable Integer id) {
+        Product responseProduct = productService.deleteProduct(id);
+        if (ObjectUtils.isEmpty(responseProduct)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            ProductResponseDto productResponseDto = InstanceMapper.mapProductToProductResponseDto(responseProduct);
+            productResponseDto.setStatus(HttpStatus.OK);
+            productResponseDto.setMessage("deleted successfully.");
+            return new ResponseEntity<>(productResponseDto, HttpStatus.OK);
+        }
+    }
 }
 
 /*

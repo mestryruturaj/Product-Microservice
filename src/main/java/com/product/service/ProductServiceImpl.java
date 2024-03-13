@@ -103,6 +103,23 @@ public class ProductServiceImpl implements ProductService {
             LOGGER.error(exception.getMessage(), ExceptionUtils.getStackTrace(exception));
             return null;
         }
+    }
 
+    /**
+     * Method provides an interface to delete an product
+     *
+     * @param id Integer
+     * @return Product
+     */
+    @Override
+    public Product deleteProduct(Integer id) {
+        try {
+            FakeStoreApiResponse fakeStoreApiResponse = fakeStoreApiClient.deleteProduct(id);
+            Product deletedProduct = InstanceMapper.mapFakeStoreApiResponseToProduct(fakeStoreApiResponse);
+            return deletedProduct;
+        } catch (ProductServiceException exception) {
+            LOGGER.error(exception.getMessage(), ExceptionUtils.getStackTrace(exception));
+            return null;
+        }
     }
 }

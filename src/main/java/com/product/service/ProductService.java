@@ -38,4 +38,13 @@ public interface ProductService {
      * @return Product
      */
     public Product putProduct(Integer id, Product product);
+
+
+    /**
+     * Method provides an interface to delete an product
+     *
+     * @param id Integer
+     * @return Product
+     */
+    public Product deleteProduct(Integer id);
 }
